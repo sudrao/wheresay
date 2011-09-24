@@ -6,6 +6,7 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'mongoid', "~> 2.2"
+gem 'mongoid_spacial'
 gem 'bson_ext', "~> 1.3"
 gem 'tweetstream', "~> 1.1.0.rc1"
 gem 'yajl-ruby'
@@ -19,6 +20,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :test, :development do
+  gem 'rspec-rails'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'

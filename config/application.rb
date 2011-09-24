@@ -52,14 +52,17 @@ module Wheresay
     config.assets.version = '1.0'
     
     # Tweetstream config
+    all_creds = {}
+    File.open(Rails.root.join('config', 'credentials.yml')) do |fd|
+      all_creds = YAML::load(fd)
+    end
+    cred = all_creds['twitter']
     TweetStream.configure do |config|
-#      config.consumer_key = 'y1MIL7OjeVn0xKUSkpIbg'
-#      config.consumer_secret = 'Wn61DBsNOe7tcHlIbNTp0ZrX1u29UpKVaFeijHGfF8'
-#      config.oauth_token = '378784566-1y4el9jG2JvI36vnDA3qRfTnm4RSbWYgvGM4cmrp'
-#      config.oauth_token_secret = '8IYzZ4EXq9W7m7OZ0W1eAXdMiDINXXtehPSn3haIb0'
-      config.auth_method = :basic
-      config.username = 'pa_test'
-      config.password = 'public_access'
+      config.consumer_key = cred['consumer_key']
+      config.consumer_secret = cred['consumer_secret']
+      config.oauth_token = cred['oauth_token']
+      config.oauth_token_secret = cred['oauth_token_secret']
+      config.auth_method = :oauth
       config.parser   = :yajl
     end
     
