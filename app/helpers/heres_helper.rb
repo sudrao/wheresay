@@ -1,2 +1,2 @@
-module HereHelper
+module HeresHelper
 end
