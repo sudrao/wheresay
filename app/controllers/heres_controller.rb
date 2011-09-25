@@ -7,7 +7,7 @@ class HeresController < ApplicationController
   
   def create
     logger.debug "location is #{@location[:lng]}, #{@location[:lat]}"
-    @tweets = Tweet.where(:location.near => [@location[:lng], @location[:lat]]).limit(50)
+    @tweets = Tweet.where(:location.near => [@location[:lng], @location[:lat]]).order('when DESC').limit(50)
     render :show
   end
   
