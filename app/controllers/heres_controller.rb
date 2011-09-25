@@ -1,6 +1,8 @@
 class HeresController < ApplicationController
   before_filter :make_location
   before_filter :check_location, :except => :show
+  respond_to :html
+  respond_to :xml, :only => :create
   
   def show
   end
@@ -8,7 +10,9 @@ class HeresController < ApplicationController
   def create
     logger.debug "location is #{@location[:lng]}, #{@location[:lat]}"
     @tweets = Tweet.where(:location.near => [@location[:lng], @location[:lat]]).order('when DESC').limit(50)
-    render :show
+    respond_with(@tweets) do |format|
+      format.html { render :show }
+    end
   end
   
   private

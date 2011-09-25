@@ -31,7 +31,7 @@ class InsertTweets
           # puts "#{status.text} country: #{status.place.country}, long: #{long}, lat: #{lat}"
           # Save tweets in mongodb with approximate coordinates
           begin
-            Tweet.create(:text => status.text, :when => DateTime.parse(status.created_at), :location => {:long => long, :lat => lat})
+            Tweet.create(:text => status.text, :when => DateTime.parse(status.created_at), :location => {:lng => long, :lat => lat})
           rescue
             EventMachine.stop
             client.stop
