@@ -1,12 +1,13 @@
 COLLECTION_EXISTS = "tmp/tweet_#{Rails.env}" # if file exists, collection exists
 
 task :pull_tweets =>  [COLLECTION_EXISTS, :environment] do
-  LoadStream.run
+  InsertTweets.run
 end
 
 # Make collection forcibly
 task :make_capped => :environment do
   NewCappedCollection.make('tweets', MAX_DB_ENTRIES)
+  Tweet.create_indexes
   touch(COLLECTION_EXISTS)
 end
 

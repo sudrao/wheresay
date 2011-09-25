@@ -3,6 +3,7 @@ require "spec_helper"
 describe Tweet do
   before :all do
     NewCappedCollection.make('tweets', 10)
+    Tweet.create_indexes
   end
   
   it "checks if tweet has text" do

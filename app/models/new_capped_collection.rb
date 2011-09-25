@@ -13,8 +13,8 @@ class NewCappedCollection
     host = config[env]['host']
     port = ENV['MONGO_RUBY_DRIVER_PORT'] || Connection::DEFAULT_PORT
     db_name = config[env]['database']
-    puts "Connecting to #{host}:#{port}"
-    db = Connection.new(host, port).db(db_name)
+    puts "Connecting to #{host}:#{port}:#{db_name}"
+    db = Connection.new(host, port, :connect => true).db(db_name)
     db.drop_collection(collection)
 
     # A capped collection has a max size and, optionally, a max number of records.

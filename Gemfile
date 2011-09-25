@@ -10,6 +10,7 @@ gem 'mongoid_spacial'
 gem 'bson_ext', "~> 1.3"
 gem 'tweetstream', "~> 1.1.0.rc1"
 gem 'yajl-ruby'
+gem 'em-synchrony'
 
 # Gems used only for assets and not required
 # in production environments by default.
