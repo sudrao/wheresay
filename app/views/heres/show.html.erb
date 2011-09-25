@@ -1,0 +1,15 @@
+Please enter your location coordinates:<br />
+<%= form_tag '/here' do -%>
+  <%= label_tag 'Longitude (degrees): ' %>
+  <%= text_field_tag 'longitude', @location[:lng] %><br />
+  <%= label_tag 'Lattitude (degrees): ' %>
+  <%= text_field_tag 'lattitude', @location[:lat] %><br />
+  
+  <%= submit_tag "Get nearby tweets"%>
+<% end %>
+
+<br />
+
+<%= "Nearby tweets: <br />".html_safe if @tweets %>
+<%= render @tweets if @tweets%>
+

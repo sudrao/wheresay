@@ -4,10 +4,13 @@ task :pull_tweets =>  [COLLECTION_EXISTS, :environment] do
   LoadStream.run
 end
 
-# Make collection (forcibly)
+# Make collection forcibly
 task :make_capped => :environment do
-  NewCappedCollection.make('tweets', 100000)
+  NewCappedCollection.make('tweets', MAX_DB_ENTRIES)
   touch(COLLECTION_EXISTS)
 end
 
-file COLLECTION_EXISTS => :make_capped
+# Make collection if absent
+file COLLECTION_EXISTS do
+  Rake::Task['make_capped'].invoke
+end

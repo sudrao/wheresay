@@ -19,7 +19,7 @@ class NewCappedCollection
 
     # A capped collection has a max size and, optionally, a max number of records.
     # Old records get pushed out by new ones once the size or max num records is reached.
-    db.create_collection(collection, :capped => true, :max => limit)
+    coll = db.create_collection(collection, :capped => true, :size => limit*200, :max => limit)
 
   end
 end
