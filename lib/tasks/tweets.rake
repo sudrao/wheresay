@@ -1,6 +1,8 @@
+require Rails.root.join('app/models/insert_tweets')
+
 COLLECTION_EXISTS = "tmp/tweet_#{Rails.env}" # if file exists, collection exists
 
-task :pull_tweets =>  [COLLECTION_EXISTS, :environment] do
+task :pull_tweets =>  [COLLECTION_EXISTS] do
   InsertTweets.run
 end
 
